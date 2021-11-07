@@ -14,17 +14,19 @@ public class bala : MonoBehaviour
     
     void Update()
     {
-        tiro.transform.Translate(Vector3.forward*velocidade*Time.deltaTime);
-       
+        
+        tiro.velocity = this.transform.forward*velocidade;
+        Destroy(this.gameObject, 1.0f);
     }
 
-    private void OnCollisionEnter(Collision other) {
-        if(other.gameObject.CompareTag("parede")){
-            
-            Destroy(this.gameObject);
-        }
+    private void OnTriggerEnter(Collider other) {
+
         if(!other.gameObject.CompareTag("Player")){
             Destroy(this.gameObject);
+            if(other.gameObject.CompareTag("parede"))
+            {
+                other.GetComponent<parede>().vida--;
+            }
         }
         
     }
