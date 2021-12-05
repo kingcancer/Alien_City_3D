@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerUI : MonoBehaviour
 {
@@ -9,6 +10,9 @@ public class PlayerUI : MonoBehaviour
 
     public void setVida(float vida){
         slider.value = vida;
+        if(vida <= 0){
+            SceneManager.LoadScene("Jogo");
+        }
     }
 
     public void setVidaMax(float vidaMax){
